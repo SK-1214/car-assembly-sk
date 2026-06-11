@@ -43,31 +43,13 @@
 | `strtol(buf, &check, 10)` | `std::stoi()` + `std::invalid_argument` 예외 처리 |
 | `char buf[100]` 전역 | 지역 `std::string` |
 
-### 1-4. `delay()` busy-wait 교체
 
-```cpp
-// Before: triple nested loop — CPU 100% 점유, 실행 환경마다 시간 다름
-void delay(int ms) {
-    volatile int sum = 0;
-    for (int i = 0; i < 1000; i++)
-        for (int j = 0; j < 1000; j++)
-            for (int t = 0; t < ms; t++) sum++;
-}
-
-// After: 표준 sleep
-#include <thread>
-#include <chrono>
-void delay(int ms) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-}
-```
-
-### 1-5. 선택 함수 내 독립 if 체인 → if-else if 정리
+### 1-4. 선택 함수 내 독립 if 체인 → if-else if 정리
 
 `selectCarType()`, `selectEngine()`, `selectBrakeSystem()`, `selectSteeringSystem()` 모두
 독립 `if`를 나열 → `if-else if` 또는 배열 조회로 단일 출력 경로 확보
 
-### 1-6. `testProducedCar()` — `isValidCheck()` 중복 제거 (DRY)
+### 1-5. `testProducedCar()` — `isValidCheck()` 중복 제거 (DRY)
 
 현재 `testProducedCar()`는 `isValidCheck()`의 조건을 그대로 복사해 메시지만 다르게 출력.  
 → 실패 원인 메시지를 함께 반환하는 단일 함수로 통합
