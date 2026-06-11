@@ -1,0 +1,25 @@
+# Visual Studio IDE metadata
+.vs/
+
+# Build output directories
+x64/
+Debug/
+Release/
+
+# Compiled object files and binaries
+*.obj
+*.exe
+*.ilk
+*.pdb
+*.idb
+*.ipch
+*.tlog
+*.lastbuildstate
+*.recipe
+*.log
+
+# NuGet restore files (packages are checked-in for this project)
+*.nupkg.lock
+
+# Memory directory (Claude Code internal)
+memory/
