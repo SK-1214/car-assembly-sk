@@ -143,6 +143,7 @@ ValidationResult validate() {
         return {false, "Truck에는 Mando 제동장치 사용 불가"};
     if (g_stack[BrakeSystem_Q] == BOSCH_B && g_stack[SteeringSystem_Q] != BOSCH_S)
         return {false, "Bosch 제동장치에는 Bosch 조향장치만 사용 가능"};
+
     return {true, ""};
 }
 
